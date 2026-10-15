@@ -17,11 +17,16 @@ USER = """Translate this {src} code to {tgt}:
 
 
 def build_messages(code: str, source: str, target: str,
-                   signature: str | None = None) -> list[dict]:
+                   signature: str | None = None,
+                   context: str | None = None) -> list[dict]:
     s, t = LANGS[source], LANGS[target]
     user = USER.format(src=s["name"], tgt=t["name"], src_fence=s["fence"], code=code)
     if signature:
         user += f"\n\nUse EXACTLY this signature:\n{signature}"
+    if context:
+        user += ("\n\nThese functions ALREADY EXIST in the same file. "
+                 "Call them directly. Do NOT redefine or re-implement them, "
+                 "and do NOT repeat their code in your answer:\n" + context)
     return [
         {"role": "system", "content": SYSTEM.format(
             src=s["name"], tgt=t["name"], fence=t["fence"], rules=t.get("rules", ""))},

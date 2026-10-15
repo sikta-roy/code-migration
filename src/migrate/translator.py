@@ -23,7 +23,8 @@ def extract_code(text: str, lang: str) -> str:
 
 
 def translate(code: str, source_lang: str = "python", target_lang: str = "c",
-              model: str | None = None, signature: str | None = None) -> TranslationResult:
+              model: str | None = None, signature: str | None = None,
+              context: str | None = None) -> TranslationResult:
     if target_lang not in LANGS or source_lang not in LANGS:
         raise ValueError(f"Unknown language. Choose from {list(LANGS)}")
     model = model or os.getenv("DEFAULT_MODEL", "ollama/qwen2.5-coder:7b")
@@ -31,7 +32,7 @@ def translate(code: str, source_lang: str = "python", target_lang: str = "c",
     start = time.time()
     try:
         resp = litellm.completion(model=model, temperature=0,
-                                  messages=build_messages(code, source_lang, target_lang, signature))
+                                  messages=build_messages(code, source_lang, target_lang, signature, context))
     except Exception as e:
         return TranslationResult(code="", seconds=time.time() - start, error=str(e), **base)
 
