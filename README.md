@@ -118,10 +118,7 @@ Each line in `benchmarks/problems.jsonl` needs:
 - [ ] Bigger benchmark set
 - [ ] Compare more models side by side
 
-## 👥 Team
 
-Built by a team of two — one side owns **translation**, the other owns **verification**. Both meet at `src/migrate/interface.py`.
 
 ---
 
-<p align="center">Made with 💖 by <a href="https://github.com/sikta-roy">Sikta Roy</a></p>
