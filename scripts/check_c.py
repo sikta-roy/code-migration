@@ -11,7 +11,8 @@ rows = []
 
 for pid, prob in probs.items():
     f = src_dir / f"{pid}.c"
-    row = {"id": pid, "compiled": False, "warnings": 0, "passed": 0, "total": 0, "error": ""}
+    row = {"id": pid, "compiled": False, "warnings": 0, "static_issues": 0,
+           "passed": 0, "total": 0, "error": ""}
     if not f.exists():
         row["error"] = "missing"; rows.append(row); continue
     with tempfile.TemporaryDirectory() as tmp:
@@ -22,6 +23,12 @@ for pid, prob in probs.items():
                             "-fsanitize=address,undefined", str(full), "-o", str(exe), "-lm"],
                            capture_output=True, text=True)
         row["warnings"] = c.stderr.count("warning:")
+        try:
+            cc = subprocess.run(["cppcheck", "--enable=warning,style", "--quiet", str(full)],
+                                capture_output=True, text=True, timeout=30)
+            row["static_issues"] = len([l for l in cc.stderr.splitlines() if ":" in l])
+        except (FileNotFoundError, subprocess.TimeoutExpired):
+            row["static_issues"] = -1
         if c.returncode != 0:
             row["error"] = c.stderr.strip()[:300]; rows.append(row); continue
         row["compiled"] = True
@@ -36,7 +43,8 @@ for pid, prob in probs.items():
         except ValueError:
             row["error"] = "bad test output"
     rows.append(row)
-    print(f"{pid}: compiled={row['compiled']} tests={row['passed']}/{row['total']} {row['error'][:60]}")
+    print(f"{pid}: compiled={row['compiled']} tests={row['passed']}/{row['total']} "
+          f"warn={row['warnings']} static={row['static_issues']} {row['error'][:50]}")
 
 n = len(rows)
 print(f"\nCompile rate: {sum(r['compiled'] for r in rows)}/{n}")
