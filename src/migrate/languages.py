@@ -18,6 +18,9 @@ LANGS = {
         "rules": "- Use C11 and the standard library only. No main().\n"
                  "- For lists, pass a pointer plus a length (e.g. `const double *arr, size_t n`).\n"
                  "- If returning an array, return a malloc'd pointer and write its length to an `size_t *out_len` parameter.\n"
+                 "- Include EVERY header you use. Common ones: <stdlib.h> for malloc/free/abs, "
+                 "<string.h> for strlen/strcmp, <ctype.h> for tolower/isalpha, "
+                 "<math.h> for fabs/sqrt, <stdbool.h> for bool, <stddef.h> for size_t.\n"
                  "- Use `bool` from <stdbool.h>.",
     },
 }

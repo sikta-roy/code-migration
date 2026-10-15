@@ -1,12 +1,22 @@
 # Week 1 baseline
 
-3 problems (p001_add, p002_close, p003_positive), Python -> C.
+8 problems, Python -> C, model: ollama_chat/qwen2.5-coder:3b (local).
 
-| Model | Compiled | All tests pass | Avg time |
-|---|---|---|---|
-| ollama_chat/qwen2.5-coder:3b | 3/3 | 3/3 | 29s |
+| Run | Prompt | Compiled | All tests pass | Avg time |
+|---|---|---|---|---|
+| v1 | base C rules | 6/8 (75%) | 6/8 (75%) | 22s |
+| v2 | + explicit header rule | 8/8 (100%) | 8/8 (100%) | 17s |
 
-Notes:
-- 7b model crashed in WSL (low memory); 3b used instead.
+## v1 failures (logic correct, headers missing)
+- p004_gcd: abs() without <stdlib.h>
+- p007_count_vowels: tolower() without <ctype.h>, used <string.h> instead
+
+## Fix
+Added one line to the C rules: list every header you use, with the common ones
+named (stdlib, string, ctype, math, stdbool, stddef). Both failures cleared.
+
+## Notes
+- 7b model crashes in WSL from low RAM; 3b used instead.
 - litellm needs the `ollama_chat/` prefix, not `ollama/`.
-- Small sample. Real baseline comes after all 20 problems are written.
+- cppcheck reports 11 style issues on the simplest problem, so static issue count
+  does not track correctness. Use it as a code-quality signal only.
