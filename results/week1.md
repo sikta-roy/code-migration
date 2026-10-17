@@ -34,3 +34,19 @@ named (stdlib, string, ctype, math, stdbool, stddef). Both failures cleared.
 
 Key point: p015 compiled with zero warnings and zero cppcheck issues. Only running
 it under AddressSanitizer exposed the bug. Compilation alone is not verification.
+
+## Model comparison (20 problems, same prompt)
+
+| Model | Compiled | All tests pass | Notes |
+|---|---|---|---|
+| qwen2.5-coder:3b | 17/20 (85%) | 14/20 (70%) | faster; p020 took 38s |
+| qwen2.5-coder:7b | 16/20 (80%) | 14/20 (70%) | slower; p020 took 208s |
+
+The bigger model did not translate better on this set.
+- 7b fixed: p009_sort_asc, p015_capitalize_words (buffer overflow gone)
+- 7b broke: p017_word_count now compiles and then segfaults (AddressSanitizer DEADLYSIGNAL),
+  which is worse than 3b's compile-time failure
+- Both fail: p018_char_freq (2/3), a shared logic bug
+
+Takeaway: on short single functions, model size matters less than prompt quality.
+The header rule gained 25 points; moving 3b -> 7b gained nothing.
