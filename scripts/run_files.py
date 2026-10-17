@@ -11,6 +11,8 @@ p = argparse.ArgumentParser()
 p.add_argument("--model", required=True)
 p.add_argument("--tag", default="week2")
 p.add_argument("--files", default="benchmarks/files.jsonl")
+p.add_argument("--no-sigs", action="store_true",
+               help="do not give the model the expected C signatures")
 a = p.parse_args()
 
 out_dir = Path("results") / a.tag / a.model.replace("/", "_").replace(":", "_") / "files"
@@ -25,7 +27,7 @@ for line in open(a.files):
     snippets, done, secs, dup = [], [], 0.0, 0
     for u in units:
         r = translate(u.code, "python", "c", a.model,
-                      signature=spec.get("signatures", {}).get(u.name),
+                      signature=None if a.no_sigs else spec.get("signatures", {}).get(u.name),
                       context="\n".join(done) if done else None)
         secs += r.seconds
         if r.error:
