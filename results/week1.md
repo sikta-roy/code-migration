@@ -50,3 +50,13 @@ The bigger model did not translate better on this set.
 
 Takeaway: on short single functions, model size matters less than prompt quality.
 The header rule gained 25 points; moving 3b -> 7b gained nothing.
+
+## p018_char_freq: shared failure, both models
+
+Both models wrote char_freq without zeroing the output array. Python creates a
+fresh dict each call; the C version writes into a caller-owned buffer that still
+holds old values. Compiles clean, no warnings, no cppcheck issues, passes 2/3.
+
+Category: ownership and initialisation semantics. The LLM maps the loop correctly
+but misses that C has no automatic zero-init for a caller-supplied array.
+Only a test that reuses the buffer catches it.
