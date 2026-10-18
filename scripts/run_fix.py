@@ -36,7 +36,9 @@ for line in open(a.problems):
     (out_dir / f"{prob['id']}.attempts.json").write_text(json.dumps(
         [{"n": x.n, "ok": x.ok, "error": x.error[:500], "seconds": x.seconds}
          for x in r.attempts], indent=1))
-    rows.append({"id": prob["id"], "ok": r.ok, "attempts": r.n_attempts,
+    api_fail = any(not x.code and x.error for x in r.attempts)
+    rows.append({"id": prob["id"], "ok": r.ok, "api_error": api_fail,
+                 "attempts": r.n_attempts,
                  "fixed_on": r.fixed_on or "", "seconds": r.seconds,
                  "cost_usd": round(r.cost_usd, 5),
                  "first_error": (r.attempts[0].error.splitlines() or [""])[0][:120]})
@@ -48,7 +50,10 @@ at1 = sum(r["fixed_on"] == 1 for r in rows)
 at2 = sum(r["fixed_on"] in (1, 2) for r in rows)
 at3 = sum(bool(r["ok"]) for r in rows)
 print(f"\nfeedback mode: {a.feedback}")
+api = sum(bool(r["api_error"]) for r in rows)
 print(f"pass@1: {at1}/{n}   pass@2: {at2}/{n}   pass@{a.attempts}: {at3}/{n}")
+if api:
+    print(f"WARNING: {api} problem(s) hit an API error, not a translation failure")
 print(f"extra model calls spent on repairs: {sum(r['attempts'] for r in rows) - n}")
 
 with open(out_dir / "summary.csv", "w", newline="") as f:

@@ -60,7 +60,7 @@ def repair(code: str, error: str, target_lang: str = "c", model: str | None = No
     start = time.time()
     try:
         resp = litellm.completion(
-            model=model, temperature=0,
+            model=model, temperature=0, timeout=180,
             messages=build_repair_messages(code, error, target_lang, signature))
     except Exception as e:
         return TranslationResult(code="", seconds=time.time() - start, error=str(e), **base)
