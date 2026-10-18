@@ -7,7 +7,7 @@ from dotenv import load_dotenv
 
 from .interface import TranslationResult
 from .languages import LANGS
-from .prompts import build_messages
+from .prompts import build_messages, build_repair_messages
 
 load_dotenv()
 litellm.drop_params = True
@@ -50,3 +50,29 @@ def translate(code: str, source_lang: str = "python", target_lang: str = "c",
         seconds=round(time.time() - start, 2),
         raw_output=raw, **base,
     )
+
+
+def repair(code: str, error: str, target_lang: str = "c", model: str | None = None,
+           signature: str | None = None) -> TranslationResult:
+    """Ask the model to fix broken target-language code. Not a translation."""
+    model = model or os.getenv("DEFAULT_MODEL", "ollama/qwen2.5-coder:7b")
+    base = dict(source_lang=target_lang, target_lang=target_lang, model=model)
+    start = time.time()
+    try:
+        resp = litellm.completion(
+            model=model, temperature=0,
+            messages=build_repair_messages(code, error, target_lang, signature))
+    except Exception as e:
+        return TranslationResult(code="", seconds=time.time() - start, error=str(e), **base)
+    raw = resp.choices[0].message.content or ""
+    try:
+        cost = litellm.completion_cost(resp)
+    except Exception:
+        cost = 0.0
+    usage = getattr(resp, "usage", None)
+    return TranslationResult(
+        code=extract_code(raw, target_lang),
+        input_tokens=getattr(usage, "prompt_tokens", 0) or 0,
+        output_tokens=getattr(usage, "completion_tokens", 0) or 0,
+        cost_usd=cost or 0.0, seconds=round(time.time() - start, 2),
+        raw_output=raw, **base)

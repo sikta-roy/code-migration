@@ -1,0 +1,56 @@
+"""Week 4: translate with a self-fixing loop and record attempt-by-attempt results."""
+import argparse, csv, json, sys
+from pathlib import Path
+sys.path.insert(0, "src")
+from migrate.fixloop import translate_with_fixes
+from migrate.verify_c import verify_c
+
+p = argparse.ArgumentParser()
+p.add_argument("--model", required=True)
+p.add_argument("--tag", default="week4")
+p.add_argument("--attempts", type=int, default=3)
+p.add_argument("--feedback", choices=["compile", "test"], default="compile")
+p.add_argument("--problems", default="benchmarks/problems.jsonl")
+a = p.parse_args()
+
+out_dir = Path("results") / a.tag / a.model.replace("/", "_").replace(":", "_") / "fix"
+out_dir.mkdir(parents=True, exist_ok=True)
+
+
+def make_verify(c_test):
+    def v(code, _test=None):
+        res = verify_c(code, c_test)
+        if a.feedback == "compile" and res.compiled:
+            res.error = "" if res.ok else "the code compiles but gives wrong results"
+        return res
+    return v
+
+
+rows = []
+for line in open(a.problems):
+    prob = json.loads(line)
+    r = translate_with_fixes(prob["python"], prob["c_test"], model=a.model,
+                             signature=prob.get("c_signature"),
+                             max_attempts=a.attempts, verify=make_verify(prob["c_test"]))
+    (out_dir / f"{prob['id']}.c").write_text(r.code)
+    (out_dir / f"{prob['id']}.attempts.json").write_text(json.dumps(
+        [{"n": x.n, "ok": x.ok, "error": x.error[:500], "seconds": x.seconds}
+         for x in r.attempts], indent=1))
+    rows.append({"id": prob["id"], "ok": r.ok, "attempts": r.n_attempts,
+                 "fixed_on": r.fixed_on or "", "seconds": r.seconds,
+                 "cost_usd": round(r.cost_usd, 5),
+                 "first_error": (r.attempts[0].error.splitlines() or [""])[0][:120]})
+    print(f"{prob['id']}: {'PASS' if r.ok else 'fail'} "
+          f"after {r.n_attempts} attempt(s) ({r.seconds}s)")
+
+n = len(rows)
+at1 = sum(r["fixed_on"] == 1 for r in rows)
+at2 = sum(r["fixed_on"] in (1, 2) for r in rows)
+at3 = sum(bool(r["ok"]) for r in rows)
+print(f"\nfeedback mode: {a.feedback}")
+print(f"pass@1: {at1}/{n}   pass@2: {at2}/{n}   pass@{a.attempts}: {at3}/{n}")
+print(f"extra model calls spent on repairs: {sum(r['attempts'] for r in rows) - n}")
+
+with open(out_dir / "summary.csv", "w", newline="") as f:
+    w = csv.DictWriter(f, fieldnames=rows[0].keys()); w.writeheader(); w.writerows(rows)
+print(f"Saved to {out_dir}")

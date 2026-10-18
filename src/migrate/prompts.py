@@ -32,3 +32,29 @@ def build_messages(code: str, source: str, target: str,
             src=s["name"], tgt=t["name"], fence=t["fence"], rules=t.get("rules", ""))},
         {"role": "user", "content": user},
     ]
+
+
+REPAIR_SYSTEM = """You are an expert {tgt} developer.
+You are given {tgt} code that fails to build or fails its tests, plus the exact error.
+Fix it.
+Rules:
+- Output ONE complete corrected file inside a single ```{fence} code block. No other text.
+- Keep the same function names and signatures.
+- Change only what is needed to fix the reported problem.
+{rules}
+"""
+
+
+def build_repair_messages(code: str, error: str, target: str,
+                          signature: str | None = None) -> list[dict]:
+    t = LANGS[target]
+    user = (f"This {t['name']} code is broken:\n\n```{t['fence']}\n{code}\n```\n\n"
+            f"The compiler or test reported:\n\n```\n{error}\n```\n\n"
+            "Return the complete fixed file.")
+    if signature:
+        user += f"\n\nIt must still match this signature exactly:\n{signature}"
+    return [
+        {"role": "system", "content": REPAIR_SYSTEM.format(
+            tgt=t["name"], fence=t["fence"], rules=t.get("rules", ""))},
+        {"role": "user", "content": user},
+    ]

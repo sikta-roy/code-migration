@@ -2,8 +2,8 @@
 Usage: python scripts/check_files.py results/week2/<model>/files"""
 import csv, json, subprocess, sys, tempfile
 from pathlib import Path
-sys.path.insert(0, "src")
-from migrate.errors import classify, RUNTIME_ONLY
+sys.path.insert(0, "src/migrate")   # import errors.py alone,
+from errors import classify, RUNTIME_ONLY   # no litellm needed in the sandbox
 
 HEADERS = "#include <stdbool.h>\n#include <stddef.h>\n"
 src_dir = Path(sys.argv[1])

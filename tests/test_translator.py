@@ -53,3 +53,52 @@ def test_assemble_drops_duplicate_definitions():
     out = assemble_c([f, f + "\nint twice(int x) { return square(x) + square(x); }"])
     assert out.count("int square(int x) {") == 1
     assert out.count("int square(int x);") == 1
+
+
+def _fake(code_out_list):
+    from migrate.interface import TranslationResult
+    calls = {"n": 0}
+
+    def fn(code, src, tgt, model, signature=None, context=None):
+        i = min(calls["n"], len(code_out_list) - 1)
+        calls["n"] += 1
+        return TranslationResult(code=code_out_list[i], source_lang=src,
+                                 target_lang=tgt, model="fake", seconds=0.1)
+    return fn
+
+
+C_TEST = ('#include <stdio.h>\nint main(void){int p=0,t=0; t++; p+= gcd(12,18)==6; '
+          'printf("%d/%d\\n",p,t); return p!=t;}')
+GOOD = "#include <stdlib.h>\nint gcd(int a,int b){while(b){int t=a%b;a=b;b=t;}return abs(a);}"
+WRONG = "int gcd(int a,int b){ return a; }"
+
+
+def _fake_repair(code_out):
+    from migrate.interface import TranslationResult
+
+    def fn(code, error, target, model, signature=None):
+        assert error, "repair must receive the error text"
+        return TranslationResult(code=code_out, source_lang=target,
+                                 target_lang=target, model="fake", seconds=0.1)
+    return fn
+
+
+def test_fixloop_repairs_on_second_attempt():
+    from migrate.fixloop import translate_with_fixes
+    r = translate_with_fixes("x", C_TEST, model="fake", translate_fn=_fake([WRONG]),
+                             repair_fn=_fake_repair(GOOD))
+    assert r.ok and r.fixed_on == 2 and r.n_attempts == 2
+
+
+def test_fixloop_stops_at_max_attempts():
+    from migrate.fixloop import translate_with_fixes
+    r = translate_with_fixes("x", C_TEST, model="fake", translate_fn=_fake([WRONG]),
+                             repair_fn=_fake_repair(WRONG))
+    assert not r.ok and r.n_attempts == 3
+
+
+def test_fixloop_no_retry_when_first_is_good():
+    from migrate.fixloop import translate_with_fixes
+    r = translate_with_fixes("x", C_TEST, model="fake", translate_fn=_fake([GOOD]),
+                             repair_fn=_fake_repair(WRONG))
+    assert r.ok and r.n_attempts == 1
