@@ -189,8 +189,11 @@ class Harness:
         # the harness itself mallocs inputs and never frees them, so leak
         # detection here would flag our own code. check_c.py covers real leaks.
         env["ASAN_OPTIONS"] = "detect_leaks=0"
-        p = subprocess.run([str(self.exe)], input=payload, capture_output=True,
-                           text=True, timeout=timeout, env=env)
+        try:
+            p = subprocess.run([str(self.exe)], input=payload, capture_output=True,
+                               text=True, timeout=timeout, env=env)
+        except subprocess.TimeoutExpired:
+            return None, f"HANG: no output after {timeout}s (likely an infinite loop)"
         if p.returncode != 0:
             return None, (p.stderr.strip()[:300] or f"exit {p.returncode}")
         return p.stdout.strip(), ""

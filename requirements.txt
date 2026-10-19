@@ -4,3 +4,5 @@ pytest
 tree-sitter>=0.23
 tree-sitter-python>=0.23
 hypothesis>=6
+matplotlib>=3.7
+matplotlib>=3.7

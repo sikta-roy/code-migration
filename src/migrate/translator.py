@@ -10,6 +10,7 @@ from .languages import LANGS
 from .prompts import build_messages, build_repair_messages
 
 load_dotenv()
+CALL_TIMEOUT = int(os.getenv("LLM_TIMEOUT", "900"))   # seconds per model call
 litellm.drop_params = True
 
 
@@ -60,7 +61,7 @@ def repair(code: str, error: str, target_lang: str = "c", model: str | None = No
     start = time.time()
     try:
         resp = litellm.completion(
-            model=model, temperature=0, timeout=180,
+            model=model, temperature=0, timeout=CALL_TIMEOUT,
             messages=build_repair_messages(code, error, target_lang, signature))
     except Exception as e:
         return TranslationResult(code="", seconds=time.time() - start, error=str(e), **base)

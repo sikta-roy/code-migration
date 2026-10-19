@@ -69,7 +69,7 @@ def check_one(problem, c_code, max_examples):
 
     try:
         prop()
-    except AssertionError:
+    except Exception:
         pass
     finally:
         h.close()
@@ -94,18 +94,19 @@ for line in open(a.problems):
         continue
     if rep.mismatches:
         vals, exp, got = rep.mismatches[-1]
-        print(f"{prob['id']:24} MISMATCH after {rep.ran} inputs")
+        kind = "HANG" if "HANG" in str(got) else ("CRASH" if "CRASH" in str(got) else "MISMATCH")
+        print(f"{prob['id']:24} {kind} after {rep.ran} inputs")
         print(f"{'':26}input    {vals!r}")
         print(f"{'':26}python   {exp!r}")
         print(f"{'':26}c        {got!r}")
-        rows.append({"id": prob["id"], "status": "mismatch", "ran": rep.ran,
+        rows.append({"id": prob["id"], "status": kind.lower(), "ran": rep.ran,
                      "detail": f"input={vals!r} python={exp!r} c={got!r}"[:300]})
     else:
         print(f"{prob['id']:24} ok ({rep.ran} inputs)")
         rows.append({"id": prob["id"], "status": "ok", "ran": rep.ran, "detail": ""})
 
 n_ok = sum(r["status"] == "ok" for r in rows)
-n_bad = sum(r["status"] == "mismatch" for r in rows)
+n_bad = sum(r["status"] in ("mismatch", "hang", "crash") for r in rows)
 n_skip = sum(r["status"] == "skipped" for r in rows)
 print(f"\nagree: {n_ok}   mismatch: {n_bad}   skipped: {n_skip}   of {len(rows)} files")
 
