@@ -1,0 +1,14 @@
+[
+ {
+  "n": 1,
+  "ok": false,
+  "error": "/tmp/tmpiliyvfcx/t.c:3:18: error: missing terminating '>' character\n    3 | #include <stdlib.\n      |                  ^\n/tmp/tmpiliyvfcx/t.c:3:10: fatal error: stdlib.: No such file or directory\n    3 | #include <stdlib.\n      |          ^\ncompilation terminated.",
+  "seconds": 122.19
+ },
+ {
+  "n": 2,
+  "ok": true,
+  "error": "",
+  "seconds": 251.7
+ }
+]

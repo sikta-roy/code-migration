@@ -1,0 +1,21 @@
+id,status,ran,detail
+p001_add,ok,50,
+p002_close,ok,50,
+p003_positive,ok,50,
+p004_gcd,ok,50,
+p005_is_prime,ok,50,
+p006_fib,mismatch,39,input=[93] python='12200160415121876738' c='-6246583658587674878'
+p007_count_vowels,ok,50,
+p008_reverse_string,ok,50,
+p009_sort_asc,does not compile,0,
+p010_unique,ok,50,
+p011_rolling_max,ok,50,
+p012_max_diff,ok,50,
+p013_sum_evens,ok,50,
+p014_is_palindrome,ok,50,
+p015_capitalize_words,ok,50,
+p016_longest_word,ok,50,
+p017_word_count,skipped,0,signature shape not supported
+p018_char_freq,skipped,0,signature shape not supported
+p019_point_distance,skipped,0,signature shape not supported
+p020_most_common_word,does not compile,0,

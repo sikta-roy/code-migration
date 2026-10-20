@@ -1,0 +1,14 @@
+[
+ {
+  "n": 1,
+  "ok": false,
+  "error": "/tmp/tmphrklvph3/t.c: In function 'has_close_elements':\n/tmp/tmphrklvph3/t.c:9:27: error: implicit declaration of function 'fabs' [-Wimplicit-function-declaration]\n    9 |             if (i != j && fabs(numbers[i] - numbers[j]) < threshold) {\n      |                           ^~~~\n/tmp/tmphrklvph3/t.c:4:1: note: include '<math.h>' or provide a declaration of 'fabs'\n    3 | #include <stdlib.h>\n  +++ |+#include <math.h>\n    4 | #include <stdbool.h>\n/tmp/tmphrklvph3/t.c:9:27: warning: incompatible ",
+  "seconds": 84.4
+ },
+ {
+  "n": 2,
+  "ok": true,
+  "error": "",
+  "seconds": 142.57
+ }
+]

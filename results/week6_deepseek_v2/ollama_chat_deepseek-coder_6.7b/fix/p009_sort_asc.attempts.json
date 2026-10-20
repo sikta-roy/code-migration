@@ -1,0 +1,20 @@
+[
+ {
+  "n": 1,
+  "ok": false,
+  "error": "/tmp/tmpneq8wb5q/t.c:3:18: error: missing terminating '>' character\n    3 | #include <stdlib.\n      |                  ^\n/tmp/tmpneq8wb5q/t.c:3:10: fatal error: stdlib.: No such file or directory\n    3 | #include <stdlib.\n      |          ^\ncompilation terminated.",
+  "seconds": 178.39
+ },
+ {
+  "n": 2,
+  "ok": false,
+  "error": "/tmp/tmpsxx3cc5p/t.c: In function 'sort_asc':\n/tmp/tmpsxx3cc5p/t.c:14:5: error: implicit declaration of function 'memcpy' [-Wimplicit-function-declaration]\n   14 |     memcpy(result, l, n * sizeof(int));\n      |     ^~~~~~\n/tmp/tmpsxx3cc5p/t.c:4:1: note: include '<string.h>' or provide a declaration of 'memcpy'\n    3 | #include <stdlib.h>\n  +++ |+#include <string.h>\n    4 | #include <stdbool.h>\n/tmp/tmpsxx3cc5p/t.c:14:5: warning: incompatible implicit declaration of built-in function 'memcpy' [-",
+  "seconds": 163.98
+ },
+ {
+  "n": 3,
+  "ok": true,
+  "error": "",
+  "seconds": 270.43
+ }
+]

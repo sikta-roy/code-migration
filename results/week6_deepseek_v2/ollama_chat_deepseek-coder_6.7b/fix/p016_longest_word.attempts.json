@@ -1,0 +1,20 @@
+[
+ {
+  "n": 1,
+  "ok": false,
+  "error": "/tmp/tmp9mvjnczg/t.c:3:18: error: missing terminating '>' character\n    3 | #include <stdlib.\n      |                  ^\n/tmp/tmp9mvjnczg/t.c:3:10: fatal error: stdlib.: No such file or directory\n    3 | #include <stdlib.\n      |          ^\ncompilation terminated.",
+  "seconds": 214.8
+ },
+ {
+  "n": 2,
+  "ok": false,
+  "error": "/tmp/tmp4x4i8i38/t.c: In function 'longest_word':\n/tmp/tmp4x4i8i38/t.c:7:23: error: implicit declaration of function 'strdup'; did you mean 'strcmp'? [-Wimplicit-function-declaration]\n    7 |     char *duplicate = strdup(s);\n      |                       ^~~~~~\n      |                       strcmp\n/tmp/tmp4x4i8i38/t.c:7:23: error: initialization of 'char *' from 'int' makes pointer from integer without a cast [-Wint-conversion]",
+  "seconds": 231.09
+ },
+ {
+  "n": 3,
+  "ok": false,
+  "error": "/tmp/tmpdrd25zw0/t.c: In function 'longest_word':\n/tmp/tmpdrd25zw0/t.c:8:23: error: implicit declaration of function 'strdup'; did you mean 'strcmp'? [-Wimplicit-function-declaration]\n    8 |     char *duplicate = strdup(s);\n      |                       ^~~~~~\n      |                       strcmp\n/tmp/tmpdrd25zw0/t.c:8:23: error: initialization of 'char *' from 'int' makes pointer from integer without a cast [-Wint-conversion]",
+  "seconds": 206.38
+ }
+]

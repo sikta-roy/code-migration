@@ -1,0 +1,20 @@
+[
+ {
+  "n": 1,
+  "ok": false,
+  "error": "/tmp/tmp5nxijjni/t.c: In function 'word_count':\n/tmp/tmp5nxijjni/t.c:21:24: error: implicit declaration of function 'strdup'; did you mean 'strcmp'? [-Wimplicit-function-declaration]\n   21 |     char *lower_text = strdup(text);\n      |                        ^~~~~~\n      |                        strcmp\n/tmp/tmp5nxijjni/t.c:21:24: error: initialization of 'char *' from 'int' makes pointer from integer without a cast [-Wint-conversion]\n/tmp/tmp5nxijjni/t.c:37:83: error: 'WordCount' has no member n",
+  "seconds": 62.56
+ },
+ {
+  "n": 2,
+  "ok": false,
+  "error": "/tmp/tmpjxalkzuf/t.c: In function 'word_count':\n/tmp/tmpjxalkzuf/t.c:22:24: error: implicit declaration of function 'strdup'; did you mean 'strcmp'? [-Wimplicit-function-declaration]\n   22 |     char *lower_text = strdup(text);\n      |                        ^~~~~~\n      |                        strcmp\n/tmp/tmpjxalkzuf/t.c:22:24: error: initialization of 'char *' from 'int' makes pointer from integer without a cast [-Wint-conversion]\n/tmp/tmpjxalkzuf/t.c:38:22: error: assignment to 'WordCount *'",
+  "seconds": 68.15
+ },
+ {
+  "n": 3,
+  "ok": false,
+  "error": "/tmp/tmp4hxy16mp/t.c: In function 'word_count':\n/tmp/tmp4hxy16mp/t.c:22:24: error: implicit declaration of function 'strdup'; did you mean 'strcmp'? [-Wimplicit-function-declaration]\n   22 |     char *lower_text = strdup(text);\n      |                        ^~~~~~\n      |                        strcmp\n/tmp/tmp4hxy16mp/t.c:22:24: error: initialization of 'char *' from 'int' makes pointer from integer without a cast [-Wint-conversion]\n/tmp/tmp4hxy16mp/t.c:38:22: error: assignment to 'WordCount *'",
+  "seconds": 69.34
+ }
+]

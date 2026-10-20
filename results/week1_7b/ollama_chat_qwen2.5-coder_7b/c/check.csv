@@ -1,0 +1,32 @@
+id,compiled,warnings,static_issues,passed,total,error,category
+p001_add,True,0,11,2,2,,pass
+p002_close,True,2,2,3,3,,pass
+p003_positive,True,0,2,2,2,,pass
+p004_gcd,True,0,0,4,4,,pass
+p005_is_prime,True,0,0,5,5,,pass
+p006_fib,True,0,0,4,4,,pass
+p007_count_vowels,True,0,0,4,4,,pass
+p008_reverse_string,True,0,0,3,3,,pass
+p009_sort_asc,False,0,2,0,0,"/tmp/tmp67ipqr43/t.c: In function ‘sort_asc’:
+/tmp/tmp67ipqr43/t.c:14:72: error: ‘strcmp’ undeclared (first use in this function)
+   14 |     qsort(sorted, n, sizeof(int), (int (*)(const void *, const void *))strcmp);
+      |                                                                        ^~~",undeclared
+p010_unique,True,0,2,3,3,,pass
+p011_rolling_max,True,0,2,3,3,,pass
+p012_max_diff,True,0,11,4,4,,pass
+p013_sum_evens,True,0,3,4,4,,pass
+p014_is_palindrome,True,4,0,4,4,,pass
+p015_capitalize_words,True,0,0,3,3,,pass
+p016_longest_word,True,0,0,3,3,,pass
+p017_word_count,True,1,0,0,0,"AddressSanitizer:DEADLYSIGNAL
+=================================================================
+==136==ERROR: AddressSanitizer: SEGV on unknown address 0x58f24f6a60c1 (pc 0x7702965d2d5c bp 0x7ffc0ee30dc0 sp 0x7ffc0ee30da0 T0)
+==136==The signal is caused by a WRITE memory access.
+    #0 0x7702965d2d5",crash
+p018_char_freq,True,0,0,2,3,,wrong_output
+p019_point_distance,True,0,0,3,3,,pass
+p020_most_common_word,True,2,2,0,0,"AddressSanitizer:DEADLYSIGNAL
+=================================================================
+==159==ERROR: AddressSanitizer: SEGV on unknown address 0x000000000030 (pc 0x730c583bdce1 bp 0x7fff05806230 sp 0x7fff058059a0 T0)
+==159==The signal is caused by a READ memory access.
+==159==Hint: address ",crash

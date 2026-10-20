@@ -1,0 +1,21 @@
+id,ok,attempts,fixed_on,seconds,cost_usd,first_error
+p001_add,True,1,1,54.05,0.0,
+p002_close,True,1,1,22.92,0.0,
+p003_positive,True,1,1,25.81,0.0,
+p004_gcd,True,1,1,9.38,0.0,
+p005_is_prime,True,1,1,12.61,0.0,
+p006_fib,True,1,1,11.19,0.0,
+p007_count_vowels,True,1,1,17.29,0.0,
+p008_reverse_string,True,1,1,15.56,0.0,
+p009_sort_asc,False,3,,80.65,0.0,/tmp/tmpk0s6z5s8/t.c: In function 'sort_asc':
+p010_unique,True,1,1,34.28,0.0,
+p011_rolling_max,True,1,1,22.6,0.0,
+p012_max_diff,True,1,1,19.86,0.0,
+p013_sum_evens,True,1,1,12.88,0.0,
+p014_is_palindrome,False,3,,90.59,0.0,the code compiles but gives wrong results
+p015_capitalize_words,False,3,,81.11,0.0,the code compiles but gives wrong results
+p016_longest_word,True,1,1,29.54,0.0,
+p017_word_count,False,3,,200.05,0.0,/tmp/tmp5nxijjni/t.c: In function 'word_count':
+p018_char_freq,False,3,,39.76,0.0,the code compiles but gives wrong results
+p019_point_distance,True,1,1,12.1,0.0,
+p020_most_common_word,False,3,,108.61,0.0,/tmp/tmpzhdo8x9d/t.c: In function 'most_common_word':

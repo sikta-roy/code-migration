@@ -1,0 +1,14 @@
+[
+ {
+  "n": 1,
+  "ok": false,
+  "error": "/tmp/tmp75f4xuiv/t.c: In function 'most_common_word':\n/tmp/tmp75f4xuiv/t.c:35:29: error: implicit declaration of function 'strdup'; did you mean 'strcmp'? [-Wimplicit-function-declaration]\n   35 |         words[word_count] = strdup(token);\n      |                             ^~~~~~\n      |                             strcmp\n/tmp/tmp75f4xuiv/t.c:35:27: error: assignment to 'char *' from 'int' makes pointer from integer without a cast [-Wint-conversion]\n   35 |         words[word_count] = strdup(t",
+  "seconds": 217.51
+ },
+ {
+  "n": 2,
+  "ok": false,
+  "error": "litellm.Timeout: Ollama_chatException - litellm.Timeout: Connection timed out after 180.0 seconds.",
+  "seconds": 189.36260390281677
+ }
+]

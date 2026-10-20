@@ -1,0 +1,21 @@
+id,ok,api_error,attempts,fixed_on,seconds,cost_usd,first_error
+p001_add,True,False,1,1,424.19,0.0,
+p002_close,True,False,1,1,131.74,0.0,
+p003_positive,True,False,2,2,373.89,0.0,/tmp/tmpiliyvfcx/t.c:3:18: error: missing terminating '>' character
+p004_gcd,True,False,2,2,245.79,0.0,/tmp/tmpanbdrtch/t.c:3:18: error: missing terminating '>' character
+p005_is_prime,True,False,1,1,123.26,0.0,
+p006_fib,True,False,1,1,106.31,0.0,
+p007_count_vowels,True,False,1,1,86.53,0.0,
+p008_reverse_string,True,False,2,2,208.74,0.0,/tmp/tmpwp6j6w5w/t.c:3:18: error: missing terminating '>' character
+p009_sort_asc,True,False,3,3,612.8,0.0,/tmp/tmpneq8wb5q/t.c:3:18: error: missing terminating '>' character
+p010_unique,True,False,2,2,735.86,0.0,/tmp/tmp1yf86vdl/t.c:3:18: error: missing terminating '>' character
+p011_rolling_max,True,False,2,2,458.04,0.0,/tmp/tmpe8gr4k96/t.c:3:18: error: missing terminating '>' character
+p012_max_diff,False,True,3,,1321.0,0.0,/tmp/tmp5lxd0_6m/t.c:4:18: error: missing terminating '>' character
+p013_sum_evens,True,False,1,1,371.59,0.0,
+p014_is_palindrome,True,False,2,2,528.45,0.0,/tmp/tmpxel_0m3n/t.c:6:18: error: missing terminating '>' character
+p015_capitalize_words,True,False,2,2,421.44,0.0,/tmp/tmphue6spzp/t.c:3:18: error: missing terminating '>' character
+p016_longest_word,False,False,3,,652.27,0.0,/tmp/tmp9mvjnczg/t.c:3:18: error: missing terminating '>' character
+p017_word_count,False,False,3,,952.45,0.0,/tmp/tmpeasm5paw/t.c:3:18: error: missing terminating '>' character
+p018_char_freq,True,False,1,1,266.56,0.0,
+p019_point_distance,True,False,2,2,360.91,0.0,/tmp/tmpzeuqb72k/t.c:3:18: error: missing terminating '>' character
+p020_most_common_word,False,True,3,,1765.48,0.0,/tmp/tmpg8wbcijs/t.c:3:18: error: missing terminating '>' character

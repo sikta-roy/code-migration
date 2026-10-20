@@ -1,0 +1,20 @@
+[
+ {
+  "n": 1,
+  "ok": false,
+  "error": "/tmp/tmpg8wbcijs/t.c:3:18: error: missing terminating '>' character\n    3 | #include <stdlib.\n      |                  ^\n/tmp/tmpg8wbcijs/t.c:3:10: fatal error: stdlib.: No such file or directory\n    3 | #include <stdlib.\n      |          ^\ncompilation terminated.",
+  "seconds": 333.59
+ },
+ {
+  "n": 2,
+  "ok": false,
+  "error": "/tmp/tmpmf2ip8c1/t.c: In function 'most_common_word':\n/tmp/tmpmf2ip8c1/t.c:25:27: error: assignment of read-only location '*word_end'\n   25 |                 *word_end = '\\0';\n      |                           ^\n/tmp/tmpmf2ip8c1/t.c:29:35: error: assignment of read-only location '*word_end'\n   29 |                         *word_end = *(word_end - 1);\n      |                                   ^",
+  "seconds": 523.56
+ },
+ {
+  "n": 3,
+  "ok": false,
+  "error": "litellm.Timeout: Ollama_chatException - litellm.Timeout: Connection timed out after 900.0 seconds.",
+  "seconds": 908.3316340446472
+ }
+]

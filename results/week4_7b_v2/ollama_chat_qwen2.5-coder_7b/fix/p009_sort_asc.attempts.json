@@ -1,0 +1,20 @@
+[
+ {
+  "n": 1,
+  "ok": false,
+  "error": "/tmp/tmpiorn6e99/t.c: In function 'sort_asc':\n/tmp/tmpiorn6e99/t.c:14:72: error: 'strcmp' undeclared (first use in this function)\n   14 |     qsort(sorted, n, sizeof(int), (int (*)(const void *, const void *))strcmp);\n      |                                                                        ^~~~~~\n/tmp/tmpiorn6e99/t.c:4:1: note: 'strcmp' is defined in header '<string.h>'; this is probably fixable by adding '#include <string.h>'\n    3 | #include <stdlib.h>\n  +++ |+#include <string.h>\n    4 |",
+  "seconds": 56.76
+ },
+ {
+  "n": 2,
+  "ok": false,
+  "error": "the code compiles but gives wrong results",
+  "seconds": 105.37
+ },
+ {
+  "n": 3,
+  "ok": false,
+  "error": "/tmp/tmpo3niuzs3/t.c: In function 'sort_asc':\n/tmp/tmpo3niuzs3/t.c:15:72: error: 'compare_int' undeclared (first use in this function)\n   15 |     qsort(sorted, n, sizeof(int), (int (*)(const void *, const void *))compare_int);\n      |                                                                        ^~~~~~~~~~~\n/tmp/tmpo3niuzs3/t.c:15:72: note: each undeclared identifier is reported only once for each function it appears in",
+  "seconds": 95.99
+ }
+]

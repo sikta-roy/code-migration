@@ -1,0 +1,20 @@
+[
+ {
+  "n": 1,
+  "ok": false,
+  "error": "/tmp/tmpeasm5paw/t.c:3:18: error: missing terminating '>' character\n    3 | #include <stdlib.\n      |                  ^\n/tmp/tmpeasm5paw/t.c:3:10: fatal error: stdlib.: No such file or directory\n    3 | #include <stdlib.\n      |          ^\ncompilation terminated.",
+  "seconds": 256.05
+ },
+ {
+  "n": 2,
+  "ok": false,
+  "error": "/tmp/tmpbljgin31/t.c: In function 'word_count':\n/tmp/tmpbljgin31/t.c:17:18: error: implicit declaration of function 'strdup'; did you mean 'strcmp'? [-Wimplicit-function-declaration]\n   17 |     char *copy = strdup(text);\n      |                  ^~~~~~\n      |                  strcmp\n/tmp/tmpbljgin31/t.c:17:18: error: initialization of 'char *' from 'int' makes pointer from integer without a cast [-Wint-conversion]",
+  "seconds": 324.25
+ },
+ {
+  "n": 3,
+  "ok": false,
+  "error": "/tmp/tmp92ug_mow/t.c: In function 'word_count':\n/tmp/tmp92ug_mow/t.c:17:18: error: implicit declaration of function 'strdup'; did you mean 'strcmp'? [-Wimplicit-function-declaration]\n   17 |     char *copy = strdup(text);\n      |                  ^~~~~~\n      |                  strcmp\n/tmp/tmp92ug_mow/t.c:17:18: error: initialization of 'char *' from 'int' makes pointer from integer without a cast [-Wint-conversion]",
+  "seconds": 372.15
+ }
+]

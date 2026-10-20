@@ -1,0 +1,14 @@
+[
+ {
+  "n": 1,
+  "ok": false,
+  "error": "/tmp/tmpm4y43heh/t.c: In function 'is_palindrome':\n/tmp/tmpm4y43heh/t.c:10:27: error: implicit declaration of function 'malloc' [-Wimplicit-function-declaration]\n   10 |     char *clean = (char *)malloc(len + 1);\n      |                           ^~~~~~\n/tmp/tmpm4y43heh/t.c:7:1: note: include '<stdlib.h>' or provide a declaration of 'malloc'\n    6 | #include <string.h>\n  +++ |+#include <stdlib.h>\n    7 | \n/tmp/tmpm4y43heh/t.c:10:27: warning: incompatible implicit declaration of built-in function",
+  "seconds": 72.8
+ },
+ {
+  "n": 2,
+  "ok": true,
+  "error": "",
+  "seconds": 147.84
+ }
+]

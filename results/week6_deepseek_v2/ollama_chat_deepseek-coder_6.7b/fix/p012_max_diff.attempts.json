@@ -1,0 +1,20 @@
+[
+ {
+  "n": 1,
+  "ok": false,
+  "error": "/tmp/tmp5lxd0_6m/t.c:4:18: error: missing terminating '>' character\n    4 | #include <stdlib.\n      |                  ^\n/tmp/tmp5lxd0_6m/t.c:4:10: fatal error: stdlib.: No such file or directory\n    4 | #include <stdlib.\n      |          ^\ncompilation terminated.",
+  "seconds": 176.6
+ },
+ {
+  "n": 2,
+  "ok": false,
+  "error": "/tmp/tmpcu878zk9/t.c:3:1: error: unknown type name 'The'\n    3 | The error is due to a missing closing angle bracket `>` in the `#include` statement. The corrected code is as follows:\n      | ^~~\n/tmp/tmpcu878zk9/t.c:3:11: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'is'\n    3 | The error is due to a missing closing angle bracket `>` in the `#include` statement. The corrected code is as follows:\n      |           ^~\n/tmp/tmpcu878zk9/t.c:3:11: error: unknown type name 'is'\n/tmp",
+  "seconds": 227.19
+ },
+ {
+  "n": 3,
+  "ok": false,
+  "error": "litellm.Timeout: Ollama_chatException - litellm.Timeout: Connection timed out after 900.0 seconds.",
+  "seconds": 917.2098729610443
+ }
+]

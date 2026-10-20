@@ -1,0 +1,20 @@
+[
+ {
+  "n": 1,
+  "ok": false,
+  "error": "/tmp/tmpzhdo8x9d/t.c: In function 'most_common_word':\n/tmp/tmpzhdo8x9d/t.c:11:24: error: implicit declaration of function 'strdup'; did you mean 'strcmp'? [-Wimplicit-function-declaration]\n   11 |     char *lower_text = strdup(text);\n      |                        ^~~~~~\n      |                        strcmp\n/tmp/tmpzhdo8x9d/t.c:11:24: error: initialization of 'char *' from 'int' makes pointer from integer without a cast [-Wint-conversion]\n/tmp/tmpzhdo8x9d/t.c:38:42: error: pointer/integer type ",
+  "seconds": 32.62
+ },
+ {
+  "n": 2,
+  "ok": false,
+  "error": "/tmp/tmpxs8ypsgk/t.c: In function 'most_common_word':\n/tmp/tmpxs8ypsgk/t.c:11:24: error: implicit declaration of function 'strdup'; did you mean 'strcmp'? [-Wimplicit-function-declaration]\n   11 |     char *lower_text = strdup(text);\n      |                        ^~~~~~\n      |                        strcmp\n/tmp/tmpxs8ypsgk/t.c:11:24: error: initialization of 'char *' from 'int' makes pointer from integer without a cast [-Wint-conversion]\n/tmp/tmpxs8ypsgk/t.c:38:42: error: pointer/integer type ",
+  "seconds": 40.46
+ },
+ {
+  "n": 3,
+  "ok": false,
+  "error": "/tmp/tmplnj89tmq/t.c: In function 'most_common_word':\n/tmp/tmplnj89tmq/t.c:11:24: error: implicit declaration of function 'strdup'; did you mean 'strcmp'? [-Wimplicit-function-declaration]\n   11 |     char *lower_text = strdup(text);\n      |                        ^~~~~~\n      |                        strcmp\n/tmp/tmplnj89tmq/t.c:11:24: error: initialization of 'char *' from 'int' makes pointer from integer without a cast [-Wint-conversion]\n/tmp/tmplnj89tmq/t.c:38:42: error: pointer/integer type ",
+  "seconds": 35.53
+ }
+]

@@ -1,0 +1,35 @@
+id,compiled,warnings,static_issues,passed,total,error,category
+p001_add,True,0,11,2,2,,pass
+p002_close,True,0,2,3,3,,pass
+p003_positive,True,0,2,2,2,,pass
+p004_gcd,True,0,0,4,4,,pass
+p005_is_prime,True,0,0,5,5,,pass
+p006_fib,True,0,0,4,4,,pass
+p007_count_vowels,True,0,0,4,4,,pass
+p008_reverse_string,True,0,0,3,3,,pass
+p009_sort_asc,False,0,2,0,0,"/tmp/tmpg3pj5t3m/t.c: In function ‘sort_asc’:
+/tmp/tmpg3pj5t3m/t.c:21:72: error: ‘int_cmp’ undeclared (first use in this function)
+   21 |     qsort(sorted, n, sizeof(int), (int (*)(const void *, const void *))int_cmp);
+      |                                                                        ^",undeclared
+p010_unique,True,1,2,3,3,,pass
+p011_rolling_max,True,0,2,3,3,,pass
+p012_max_diff,True,0,6,4,4,,pass
+p013_sum_evens,True,0,3,4,4,,pass
+p014_is_palindrome,True,0,0,3,4,,wrong_output
+p015_capitalize_words,True,0,0,0,0,"=================================================================
+==120==ERROR: AddressSanitizer: global-buffer-overflow on address 0x60cf5d07a06c at pc 0x60cf5d079a48 bp 0x7ffce9092400 sp 0x7ffce90923f0
+READ of size 1 at 0x60cf5d07a06c thread T0
+    #0 0x60cf5d079a47 in capitalize_words (/tmp/tmpku",buffer_overflow
+p016_longest_word,True,2,0,3,3,,pass
+p017_word_count,False,4,1,0,0,"/tmp/tmpyl014pto/t.c: In function ‘word_count’:
+/tmp/tmpyl014pto/t.c:21:24: warning: implicit declaration of function ‘strdup’; did you mean ‘strcmp’? [-Wimplicit-function-declaration]
+   21 |     char *lower_text = strdup(text);
+      |                        ^~~~~~
+      |                        s",implicit_decl
+p018_char_freq,True,0,0,2,3,,wrong_output
+p019_point_distance,True,0,0,3,3,,pass
+p020_most_common_word,True,3,1,0,0,"AddressSanitizer:DEADLYSIGNAL
+=================================================================
+==154==ERROR: AddressSanitizer: SEGV on unknown address 0x000000000010 (pc 0x5761480d743d bp 0x7ffe6003bc50 sp 0x7ffe6003bbf0 T0)
+==154==The signal is caused by a READ memory access.
+==154==Hint: address ",crash
