@@ -1,5 +1,6 @@
 .env
 __pycache__/
 .venv/
-results/*/
+# keep summaries and CSVs, skip nothing small
+# (result folders are committed so both of us can analyse runs)
 *.pyc
