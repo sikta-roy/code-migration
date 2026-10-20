@@ -178,12 +178,6 @@ Each line in `benchmarks/problems.jsonl`:
 - Differential testing skips struct-based signatures and uses bounded inputs.
 - Numbers are from the Docker sandbox; a different `gcc` can change results slightly.
 
-## 👥 Team
-
-| Member | Main areas |
-|---|---|
-| [Sikta Roy](https://github.com/sikta-roy) | Prompts and model work, Streamlit UI |
-| [Shubham Ramola](https://github.com/skiing22) | Tooling, verification, write-up |
 
 ## 📄 License
 
