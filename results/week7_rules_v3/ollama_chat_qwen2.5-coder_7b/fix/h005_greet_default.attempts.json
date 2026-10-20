@@ -1,0 +1,20 @@
+[
+ {
+  "n": 1,
+  "ok": false,
+  "error": "=================================================================\n==1900==ERROR: AddressSanitizer: heap-buffer-overflow on address 0x502000000018 at pc 0x7694ab4fb303 bp 0x7ffefe8d0860 sp 0x7ffefe8d0008\nWRITE of size 2 at 0x502000000018 thread T0\n    #0 0x7694ab4fb302 in memcpy ../../../../src/libsanitizer/sanitizer_common/sanitizer_common_interceptors_memintrinsics.inc:115\n    #1 0x5820f6e2d533 in greet (/tmp/tmpezfdul_4/t+0x2533) (BuildId: b11ad4eb10a4c68a9b1c79c98bb51b4ed92b4567)\n    #2 0x582",
+  "seconds": 12.06
+ },
+ {
+  "n": 2,
+  "ok": false,
+  "error": "=================================================================\n==1908==ERROR: AddressSanitizer: heap-buffer-overflow on address 0x502000000018 at pc 0x7aadb3efb303 bp 0x7fff47cf43c0 sp 0x7fff47cf3b68\nWRITE of size 2 at 0x502000000018 thread T0\n    #0 0x7aadb3efb302 in memcpy ../../../../src/libsanitizer/sanitizer_common/sanitizer_common_interceptors_memintrinsics.inc:115\n    #1 0x5bc90189c533 in greet (/tmp/tmpu1u_jc3o/t+0x2533) (BuildId: 3afb81d40e8bda8f182fd099181970e90f7721ef)\n    #2 0x5bc",
+  "seconds": 20.37
+ },
+ {
+  "n": 3,
+  "ok": false,
+  "error": "=================================================================\n==1918==ERROR: AddressSanitizer: heap-buffer-overflow on address 0x502000000018 at pc 0x7f8f792fb303 bp 0x7ffcd7496170 sp 0x7ffcd7495918\nWRITE of size 2 at 0x502000000018 thread T0\n    #0 0x7f8f792fb302 in memcpy ../../../../src/libsanitizer/sanitizer_common/sanitizer_common_interceptors_memintrinsics.inc:115\n    #1 0x584321c5d533 in greet (/tmp/tmpz2uh5hxb/t+0x2533) (BuildId: 160d0a7b92d8a5e24a03e54d3ca3ad20b55cd4ee)\n    #2 0x584",
+  "seconds": 17.59
+ }
+]

@@ -102,3 +102,15 @@ def test_fixloop_no_retry_when_first_is_good():
     r = translate_with_fixes("x", C_TEST, model="fake", translate_fn=_fake([GOOD]),
                              repair_fn=_fake_repair(WRONG))
     assert r.ok and r.n_attempts == 1
+
+
+
+def test_mapping_rules_are_optional():
+    from migrate.prompts import build_messages
+    from migrate.rules import PY_TO_C_MAPPING
+    plain = build_messages("def f(): pass", "python", "c")[0]["content"]
+    withr = build_messages("def f(): pass", "python", "c",
+                           extra_rules=PY_TO_C_MAPPING)[0]["content"]
+    assert "yield" not in plain
+    assert "yield / generator" in withr
+    assert len(withr) > len(plain)

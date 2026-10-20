@@ -1,0 +1,8 @@
+id,ok,api_error,attempts,fixed_on,seconds,cost_usd,first_error
+h001_safe_divide,True,False,1,1,4.46,0.0,
+h002_parse_int_or,True,False,2,2,17.23,0.0,/tmp/tmpbqyu3_o0/t.c: In function ‘parse_int_or’:
+h003_counter,True,False,1,1,9.92,0.0,
+h004_squares_gen,True,False,1,1,9.46,0.0,
+h005_greet_default,False,False,3,,41.36,0.0,the code compiles but gives wrong results
+h006_find_index,True,False,1,1,6.25,0.0,
+h007_flatten_evens,True,False,1,1,21.77,0.0,

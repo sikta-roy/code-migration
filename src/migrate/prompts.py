@@ -18,7 +18,8 @@ USER = """Translate this {src} code to {tgt}:
 
 def build_messages(code: str, source: str, target: str,
                    signature: str | None = None,
-                   context: str | None = None) -> list[dict]:
+                   context: str | None = None,
+                   extra_rules: str | None = None) -> list[dict]:
     s, t = LANGS[source], LANGS[target]
     user = USER.format(src=s["name"], tgt=t["name"], src_fence=s["fence"], code=code)
     if signature:
@@ -27,9 +28,12 @@ def build_messages(code: str, source: str, target: str,
         user += ("\n\nThese functions ALREADY EXIST in the same file. "
                  "Call them directly. Do NOT redefine or re-implement them, "
                  "and do NOT repeat their code in your answer:\n" + context)
+    system = SYSTEM.format(src=s["name"], tgt=t["name"], fence=t["fence"],
+                           rules=t.get("rules", ""))
+    if extra_rules:
+        system += extra_rules
     return [
-        {"role": "system", "content": SYSTEM.format(
-            src=s["name"], tgt=t["name"], fence=t["fence"], rules=t.get("rules", ""))},
+        {"role": "system", "content": system},
         {"role": "user", "content": user},
     ]
 
@@ -46,15 +50,19 @@ Rules:
 
 
 def build_repair_messages(code: str, error: str, target: str,
-                          signature: str | None = None) -> list[dict]:
+                          signature: str | None = None,
+                          extra_rules: str | None = None) -> list[dict]:
     t = LANGS[target]
     user = (f"This {t['name']} code is broken:\n\n```{t['fence']}\n{code}\n```\n\n"
             f"The compiler or test reported:\n\n```\n{error}\n```\n\n"
             "Return the complete fixed file.")
     if signature:
         user += f"\n\nIt must still match this signature exactly:\n{signature}"
+    system = REPAIR_SYSTEM.format(tgt=t["name"], fence=t["fence"],
+                                  rules=t.get("rules", ""))
+    if extra_rules:
+        system += extra_rules
     return [
-        {"role": "system", "content": REPAIR_SYSTEM.format(
-            tgt=t["name"], fence=t["fence"], rules=t.get("rules", ""))},
+        {"role": "system", "content": system},
         {"role": "user", "content": user},
     ]

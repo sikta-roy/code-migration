@@ -1,0 +1,14 @@
+[
+ {
+  "n": 1,
+  "ok": false,
+  "error": "/tmp/tmpbqyu3_o0/t.c: In function \u2018parse_int_or\u2019:\n/tmp/tmpbqyu3_o0/t.c:14:15: error: \u2018INT_MIN\u2019 undeclared (first use in this function)\n   14 |     if (val < INT_MIN || val > INT_MAX) {\n      |               ^~~~~~~\n/tmp/tmpbqyu3_o0/t.c:6:1: note: \u2018INT_MIN\u2019 is defined in header \u2018<limits.h>\u2019; did you forget to \u2018#include <limits.h>\u2019?\n    5 | #include <ctype.h>\n  +++ |+#include <limits.h>\n    6 | #include <stdbool.h>\n/tmp/tmpbqyu3_o0/t.c:14:15: note: each undeclared identifier is reported only once ",
+  "seconds": 8.01
+ },
+ {
+  "n": 2,
+  "ok": true,
+  "error": "",
+  "seconds": 9.22
+ }
+]
