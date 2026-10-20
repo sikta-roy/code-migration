@@ -33,3 +33,29 @@ roughly 30s for qwen-3b. Strong repair is paid for in time.
   that clutter compare.py. Keep week1_full, week1_7b, week4_v3, week4_7b_v2,
   week6_deepseek_v2.
 - week1 and week1_v2 predate the category column and show "? 8".
+
+## Differential testing on deepseek output (added later)
+
+| Model | Agree | Mismatch | Skipped | Does not compile |
+|---|---|---|---|---|
+| qwen2.5-coder:3b | 12 | 3 | 3 | 2 |
+| qwen2.5-coder:7b | 14 | 1 | 3 | 2 |
+| deepseek-coder:6.7b | 12 | 1 | 3 | 2 |
+
+deepseek repaired 9 problems, far more than any other model, and its repaired code
+holds up under random inputs about as well as the others. The repairs are real
+fixes, not code shaped to pass the specific hand-written tests.
+
+### New bugs found
+- p006_fib with input -1: hangs forever. A negative n cast into a size_t loop
+  counter wraps to a huge number. All three models produce this, so it is a
+  systematic Python-to-C gap rather than one model's mistake.
+- p015_capitalize_words with "0A": python "0a", C "0A". Python's str.capitalize()
+  lowercases the rest of the word; the C version only uppercases the first letter.
+- p016_longest_word with "0A": segfault (AddressSanitizer DEADLYSIGNAL) on a
+  two-character input.
+
+### Note on comparing numbers
+week1_7b reads 16/20 in comparison.md but was 14/20 when first run on the laptop.
+The difference is the compiler: the Docker sandbox gcc accepts a file the laptop
+gcc rejected. Use container numbers throughout the final report and say so.
